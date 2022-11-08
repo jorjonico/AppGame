@@ -1,26 +1,34 @@
-import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Keyboard, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import React, { useState } from 'react'
 
 import Card from '../components/Card'
 import Input from '../components/input'
-import React from 'react'
 import colors from '../constants/colors'
 
 const StarGameScreen = () => {
+    const [value, setValue] = useState('')
+
+    const handleInput = (text) => {
+        setValue(text.replace(/[^0-9]/g), '')
+    }
+    
     return (
-        <View style={styles.screen}>
-            <Card>
-                <Text>Elije un número</Text>
-                <Input />
-                <View style={styles.buttonContainer}>
-                    <Pressable style={styles.cleanButton}>
-                        <Text style={{color: 'white'}}>Limpiar</Text>
-                    </Pressable>
-                    <Pressable style={{...styles.cleanButton, ...styles.confirmButton}}>
-                        <Text style={{color: 'white'}}>Confirmar</Text>
-                    </Pressable>
-                </View>
-            </Card>
-        </View>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={styles.screen}>
+                <Card>
+                    <Text>Elije un número</Text>
+                    <Input value={value} onChangeText={handleInput}/>
+                    <View style={styles.buttonContainer}>
+                        <Pressable style={styles.cleanButton}>
+                            <Text style={{color: 'white'}}>Limpiar</Text>
+                        </Pressable>
+                        <Pressable style={{...styles.cleanButton, ...styles.confirmButton}}>
+                            <Text style={{color: 'white'}}>Confirmar</Text>
+                        </Pressable>
+                    </View>
+                </Card>
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 
