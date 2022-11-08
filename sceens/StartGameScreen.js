@@ -1,6 +1,7 @@
 import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 
 import Card from '../components/Card'
+import Input from '../components/input'
 import React from 'react'
 import colors from '../constants/colors'
 
@@ -9,7 +10,7 @@ const StarGameScreen = () => {
         <View style={styles.screen}>
             <Card>
                 <Text>Elije un número</Text>
-                <TextInput />
+                <Input />
                 <View style={styles.buttonContainer}>
                     <Pressable style={styles.cleanButton}>
                         <Text style={{color: 'white'}}>Limpiar</Text>
