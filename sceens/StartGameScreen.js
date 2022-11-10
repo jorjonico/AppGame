@@ -1,4 +1,4 @@
-import { Keyboard, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Button, Keyboard, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
 
 import Card from '../components/Card'
@@ -6,10 +6,27 @@ import Input from '../components/input'
 import colors from '../constants/colors'
 
 const StarGameScreen = () => {
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState('');
+    const [confirmed, setConfirmed] = useState(false);
+    const [selectedNumber, setSelectedNumber] = useState('');
+
+    const handleConfirmation = () => {
+        const choseNumber = parseInt(value)
+        if( choseNumber === NaN || choseNumber <= 0 || choseNumber > 99 ) return
+        
+        setConfirmed(true);
+        setSelectedNumber(choseNumber);
+        setValue('');
+    }
+
+    const handleResetInput = () =>{
+        setValue('');
+        setConfirmed(false);
+    }
 
     const handleInput = (text) => {
-        setValue(text.replace(/[^0-9]/g), '')
+        console.log(text);
+        setValue(text.replace(/[^0-9]/g, ''))
     }
     
     return (
@@ -19,14 +36,21 @@ const StarGameScreen = () => {
                     <Text>Elije un número</Text>
                     <Input value={value} onChangeText={handleInput}/>
                     <View style={styles.buttonContainer}>
-                        <Pressable style={styles.cleanButton}>
+                        <Pressable style={styles.cleanButton} onPress={handleResetInput}>
                             <Text style={{color: 'white'}}>Limpiar</Text>
                         </Pressable>
-                        <Pressable style={{...styles.cleanButton, ...styles.confirmButton}}>
+                        <Pressable style={{...styles.cleanButton, ...styles.confirmButton}} onPress={handleConfirmation}>
                             <Text style={{color: 'white'}}>Confirmar</Text>
                         </Pressable>
                     </View>
                 </Card>
+                {confirmed && (
+                    <Card newStyles={{marginTop: 20}}>
+                        <Text>Tu número</Text>
+                        <Text>{selectedNumber}</Text>
+                        <Button title='Empezar juego'/>
+                    </Card>
+                )}
             </View>
         </TouchableWithoutFeedback>
     )
