@@ -5,7 +5,7 @@ import Card from '../components/Card'
 import Input from '../components/input'
 import colors from '../constants/colors'
 
-const StarGameScreen = () => {
+const StarGameScreen = ({onStarGame}) => {
     const [value, setValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState('');
@@ -48,7 +48,7 @@ const StarGameScreen = () => {
                     <Card newStyles={{marginTop: 20}}>
                         <Text>Tu número</Text>
                         <Text>{selectedNumber}</Text>
-                        <Button title='Empezar juego'/>
+                        <Button title='Empezar juego' onPress={() => onStarGame(selectedNumber)}/>
                     </Card>
                 )}
             </View>
