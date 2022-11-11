@@ -4,9 +4,13 @@ import GameScreen from './sceens/GameScreen';
 import Header from './components/Header';
 import StarGameScreen from './sceens/StartGameScreen';
 import { StatusBar } from 'expo-status-bar';
+import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
 export default function App() {
+  const [loaded] = useFonts({
+    Dancing: require('./assets/fonts/DancingScript-VariableFont_wght.ttf')
+  });
   const [userNumber, setUserNumber] = useState()
 
   const handleStarGame = (selectedNumber) => {
@@ -19,9 +23,13 @@ export default function App() {
     content = <GameScreen />
   }
   
+  if(!loaded){
+    return null
+  }
+  
   return (
     <View style={styles.container}>
-      <Header title={"Adivina el número"}/>
+      <Header title={"Adivina el número"} newStyles={{fontFamily: 'Dancing'}}/>
       {content}
       <StatusBar style="auto" />
     </View>
