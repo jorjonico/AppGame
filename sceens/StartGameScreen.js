@@ -4,8 +4,12 @@ import React, { useState } from 'react'
 import Card from '../components/Card'
 import Input from '../components/input'
 import colors from '../constants/colors'
+import { useFonts } from 'expo-font';
 
 const StarGameScreen = ({onStarGame}) => {
+    const [loaded] = useFonts({
+        Dancing: require('.././assets/fonts/DancingScript-VariableFont_wght.ttf')
+    });
     const [value, setValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState('');
@@ -33,7 +37,7 @@ const StarGameScreen = ({onStarGame}) => {
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.screen}>
                 <Card>
-                    <Text>Elije un número</Text>
+                    <Text style={styles.title01}>Elije un número</Text>
                     <Input value={value} onChangeText={handleInput}/>
                     <View style={styles.buttonContainer}>
                         <Pressable style={styles.cleanButton} onPress={handleResetInput}>
@@ -64,6 +68,11 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         marginTop: 50,
+    },
+    title01:{
+        fontFamily: 'Dancing',
+        fontSize: 40,
+        color: colors.primary,
     },
     buttonContainer:{
         flexDirection: 'row',

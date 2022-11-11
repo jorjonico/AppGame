@@ -4,6 +4,7 @@ import GameScreen from './sceens/GameScreen';
 import Header from './components/Header';
 import StarGameScreen from './sceens/StartGameScreen';
 import { StatusBar } from 'expo-status-bar';
+import colors from './constants/colors';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
@@ -39,5 +40,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.verde,
   },
 });
