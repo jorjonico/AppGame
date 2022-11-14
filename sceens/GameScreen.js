@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 import Card from '../components/Card';
@@ -17,8 +17,12 @@ const GameScreen = () => {
         <Text style={styles.title02}>La suposición del oponente</Text>
         <Text style={styles.title01}>{currentGuess}</Text>
         <Card newStyles={styles.buttonContainer}>
-            <Button title='Menor'/>
-            <Button title='Mayor'/>
+            <Pressable style={styles.cleanButton}>
+                <Text style={{color: 'white', fontSize: fontSize.h2}}>Menor</Text>
+            </Pressable>
+            <Pressable style={{...styles.cleanButton, backgroundColor: colors.primary}}>
+                <Text style={{color: 'white', fontSize: fontSize.h2}}>Mayor</Text>
+            </Pressable>
         </Card>
         </View>
     )
@@ -47,6 +51,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontSize: fontSize.h2,
         color: colors.secondary,
+    },
+    cleanButton:{
+        backgroundColor: colors.secondary,
+        height: 40,
+        width: 90,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,   
     },
     
 })
