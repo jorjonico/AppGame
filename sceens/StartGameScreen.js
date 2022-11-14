@@ -4,11 +4,13 @@ import React, { useState } from 'react'
 import Card from '../components/Card'
 import Input from '../components/input'
 import colors from '../constants/colors'
+import fontSize from '../constants/fontSize'
 import { useFonts } from 'expo-font';
 
 const StarGameScreen = ({onStarGame}) => {
     const [loaded] = useFonts({
-        Dancing: require('.././assets/fonts/DancingScript-VariableFont_wght.ttf')
+        Dancing: require('.././assets/fonts/DancingScript-VariableFont_wght.ttf'),
+        Roboto: require('.././assets/fonts/Roboto-Bold.ttf'),
     });
     const [value, setValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
@@ -41,18 +43,20 @@ const StarGameScreen = ({onStarGame}) => {
                     <Input value={value} onChangeText={handleInput}/>
                     <View style={styles.buttonContainer}>
                         <Pressable style={styles.cleanButton} onPress={handleResetInput}>
-                            <Text style={{color: 'white'}}>Limpiar</Text>
+                            <Text style={{color: 'white', fontSize: fontSize.h2}}>Limpiar</Text>
                         </Pressable>
                         <Pressable style={{...styles.cleanButton, ...styles.confirmButton}} onPress={handleConfirmation}>
-                            <Text style={{color: 'white'}}>Confirmar</Text>
+                            <Text style={{color: 'white', fontSize: fontSize.h2}}>Confirmar</Text>
                         </Pressable>
                     </View>
                 </Card>
                 {confirmed && (
                     <Card newStyles={{marginTop: 20}}>
-                        <Text>Tu número</Text>
-                        <Text>{selectedNumber}</Text>
-                        <Button title='Empezar juego' onPress={() => onStarGame(selectedNumber)}/>
+                        <Text style={styles.title01}>Tu número</Text>
+                        <Text style={styles.title01}>{selectedNumber}</Text>
+                        <Pressable style={styles.confirmGame} onPress={() => onStarGame(selectedNumber)}>
+                            <Text style={{color: 'white'}}>Empezar juego</Text>
+                        </Pressable>
                     </Card>
                 )}
             </View>
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
     },
     title01:{
         fontFamily: 'Dancing',
-        fontSize: 40,
+        fontSize: fontSize.h1,
         color: colors.primary,
     },
     buttonContainer:{
@@ -81,14 +85,23 @@ const styles = StyleSheet.create({
     },
     cleanButton:{
         backgroundColor: colors.secondary,
-        height: 35,
-        width: 70,
+        height: 40,
+        width: 90,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,   
     },
     confirmButton:{
         backgroundColor: colors.primary, 
-        width: 80,
-    }
+        width: 110,
+    },
+    confirmGame:{
+        marginTop: 20,
+        backgroundColor: colors.acento,
+        height: 40,
+        width: 110,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,   
+    },
 })
