@@ -1,18 +1,33 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 
 import Card from '../components/Card'
-import React from 'react'
 import colors from '../constants/colors'
 import fontSize from '../constants/fontSize'
+import lose from "../assets/img/lose.jpg"
+import win from "../assets/img/win.jpg"
 
 const ResultScreen = ({result}) => {
+    const [image, setImage] = useState('');
+    useEffect(() =>{
+        handleImage();
+    }, []);
+
+    const handleImage = () =>{
+        if (result === 'ganado') {
+            setImage(win);
+            return;
+        }
+        setImage(lose);
+    };
+    
     return (
         <View style={styles.conteiner}>
             <Card>
                 <Text style={styles.title02}>{`Tu has ${result} el juego`}</Text>
                 <Image
                 style={styles.imgContainer}
-                source={{uri: "https://img.freepik.com/vector-gratis/facebook-icono-me-gusta_1017-8081.jpg?w=740&t=st=1668521745~exp=1668522345~hmac=e18d81fc9f6c8bbd67cbefa97eb9e0bf3a9c722d99005665a8b5bcad099eeee1"}}
+                source={image}
                 />
             </Card>
         </View>
@@ -35,5 +50,6 @@ const styles = StyleSheet.create({
     imgContainer:{
         width: 200,
         height: 200,
+        marginTop: 30,
     },
 })
