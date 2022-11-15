@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 
 import React from 'react'
 
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 const Card = ({children, newStyles}) => {
     return <View style={{...styles.inputContainer, ...newStyles}}>{children}</View>
 }
@@ -10,7 +12,8 @@ export default Card;
 
 const styles = StyleSheet.create({
     inputContainer:{
-        width: 300,
+        width: width / 1.2,
+        maxWidth: 400,
         alignItems: 'center',
         padding: 20,
         alignItems: 'center',

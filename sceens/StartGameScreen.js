@@ -1,4 +1,4 @@
-import { Button, Keyboard, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Button, Dimensions, Keyboard, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
 
 import Card from '../components/Card'
@@ -7,6 +7,8 @@ import colors from '../constants/colors'
 import fontSize from '../constants/fontSize'
 import { useFonts } from 'expo-font';
 
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 const StarGameScreen = ({onStarGame}) => {
     const [loaded] = useFonts({
         Dancing: require('.././assets/fonts/DancingScript-VariableFont_wght.ttf'),
@@ -86,20 +88,20 @@ const styles = StyleSheet.create({
     cleanButton:{
         backgroundColor: colors.secondary,
         height: 40,
-        width: 90,
+        width: '40%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,   
     },
     confirmButton:{
         backgroundColor: colors.primary, 
-        width: 110,
+        width: '50%',
     },
     confirmGame:{
         marginTop: 20,
         backgroundColor: colors.acento,
         height: 40,
-        width: 110,
+        width: '50%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,   
